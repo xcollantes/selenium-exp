@@ -1,9 +1,12 @@
-#env/bin/python3
+#!env/bin/python3
 
 from selenium import webdriver as wd
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 
-dr = wd.Chrome("C:/Users/Xavier/Documents/chromedriver.exe")
+options = Options()
+options.headless = True
+
+dr = wd.Chrome("C:/Users/Xavier/Documents/chromedriver.exe", chrome_options=options)
 
 dr.get("https://linkedin.com")
 
@@ -17,3 +20,12 @@ btn = dr.find_element_by_name('search')
 btn.click()
 
 print(dr.current_url)
+print(dr.get_window_size())
+#dr.set_window_size(win_size['width'], win_size['height'])
+dr.set_window_size(2000, 1900)
+
+#dr.maximize_window()
+
+dr.get_screenshot_as_file('C:/Users/Xavier/Desktop/selenium.png')
+
+dr.close()
